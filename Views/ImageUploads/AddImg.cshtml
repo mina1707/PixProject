@@ -1,0 +1,31 @@
+
+@model Image
+
+<h1 class="text-center">Add Image</h1>
+
+<div class="text-center">
+    <form asp-controller="Images" asp-action="Create" enctype="multipart/form-data" method="post">
+        @* <div asp-validation-summary="ModelOnly" class="text-danger"> *@
+            <div class="form-group">
+                <label asp-for="Title"></label>
+                <span asp-validation-for="Title" class="text-danger"></span>
+                <input type="text" asp-for="Title">
+            </div>
+            <div class="form-group">
+                <label asp-for="Comment"></label>
+                <span asp-validation-for="Comment" class="text-danger"></span>
+                <input type="text" asp-for="Comment">
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile"></label>
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                <input asp-for="ImageFile" accept="image/*">
+            </div>
+
+            <button class="btn btn-warning" type="submit">Upload</button>
+        @* </div> *@
+
+    </form>
+
+
+</div>
