@@ -50,7 +50,7 @@ namespace Pix.Controllers
 
         [HttpPost("/images/create")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ImageId,Title,ImageFile")]Image image)
+        public async Task<IActionResult> Create([Bind("ImageId,Title, Comment ,ImageFile")]Image image)
         {
             if (ModelState.IsValid)
             {
