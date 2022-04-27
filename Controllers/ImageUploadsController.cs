@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Pix.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 namespace Pix.Controllers
 {
@@ -43,8 +44,10 @@ namespace Pix.Controllers
         {
             if (HttpContext.Session.GetInt32("UserId") != null )
             {
-                var result = db.Images.ToList();
-                // HttpContext.Session.GetInt32("UserFir") = User.FirstName;
+                var result = db.Images
+                .Include(u => u.Uploader)
+                .ToList();
+                
                 return View("Dashboard", result);
             }
             
@@ -74,7 +77,7 @@ namespace Pix.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(image.ImageFile.FileName);
                 string extension = Path.GetExtension(image.ImageFile.FileName);
                 image.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                string path = Path.Combine(wwwRootPath + "/UploadImg/", fileName);
+                string path = Path.Combine(wwwRootPath + "/Images/", fileName);
                 using (var fileStream = new FileStream(path,FileMode.Create))
                 {
                     await image.ImageFile.CopyToAsync(fileStream);

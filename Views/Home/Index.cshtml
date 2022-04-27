@@ -2,17 +2,31 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container">
-    <h1 class="text-center">Welcome</h1>
-    <hr>
+<!DOCTYPE html>
+<html lang="en">
 
-    <div class="row mt-5">
-        <div class="col-md">
-            <partial name="_Register"></partial>
-        </div>
-        <div class="col-md">
-            <partial name="_Login"></partial>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login/Registration</title>
+    <link rel="stylesheet" href="~/css/colortheme.css">
+</head>
+<body class="color-ivory">
+
+    <div class="container">
+        <h1 class="text-center">Welcome</h1>
+        <hr>
+
+        <div style="border: 3px solid black;border-radius: 15px; padding: 20px" class="row mt-5 color-lightblue">
+            <div class="col-md">
+                <partial name="_Register"></partial>
+            </div>
+            <div class="col-md">
+                <partial name="_Login"></partial>
+            </div>
         </div>
     </div>
 
-</div>
+    </body>
+</html>

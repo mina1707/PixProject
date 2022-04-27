@@ -1,14 +1,33 @@
-@model IEnumerable<Pix.Models.Image>
+@model IEnumerable<Image>
 
-
-@* <h1>Hello @Session["UserName"]</h1> *@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="~/css/colortheme.css">
+</head>
+<body class="color-ivory">
+    
 <table class= "table">
     @foreach (var img in Model)
     {
         
-        <p><img src= "~/Images/@img.ImageName" height="200" width = "240"/> </p>
-        
+        <div style="border-radius: 25px;" class="card shadow w-75 mb-3 mx-auto">
+            <img style="border-top-left-radius: 25px;border-top-right-radius: 25px;" src= "~/Images/@img.ImageName"/>
+            <div style="border-bottom-left-radius: 25px;border-bottom-right-radius: 25px" class="color-lightblue card-body">
+                @if (@img.Comment != null)
+                {
+                    <p class="card-text"> Comment: <br>
+                    @img.Comment</p>
+                }
+                <small class="text-muted">Submitted by: @img.Uploader.FullName() at @img.CreatedAt</small>
+            </div>
+        </div>
     }
-
 </table>
+
+</body>
+</html>

@@ -14412,6 +14412,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\jyant\\Desktop\\C#\\ProjectWeek\\Pix\\Views\\ImageUploads\\Dashboard.cshtml",
+      "TargetPath": "Views\\ImageUploads\\Dashboard.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\jyant\\Desktop\\C#\\ProjectWeek\\Pix\\Views\\Home\\_Register.cshtml",
       "TargetPath": "Views\\Home\\_Register.cshtml",
       "FileKind": "mvc"
