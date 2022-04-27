@@ -9,8 +9,8 @@ using Pix.Models;
 namespace Pix.Migrations
 {
     [DbContext(typeof(PixContext))]
-    [Migration("20220426210954_First")]
-    partial class First
+    [Migration("20220426232425_testing")]
+    partial class testing
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

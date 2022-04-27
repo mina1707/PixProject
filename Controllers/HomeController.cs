@@ -27,7 +27,7 @@ namespace Pix.Controllers
         {
             if (HttpContext.Session.GetInt32("UserId") != null )
             {
-                return RedirectToAction("AddImg", "ImageUploads");
+                return RedirectToAction("AllImages", "ImageUploads");
             }
             return View("Index");
         }
@@ -73,7 +73,7 @@ namespace Pix.Controllers
 
             HttpContext.Session.SetInt32("UserId", newUser.UserId);
             HttpContext.Session.SetString("FullName", newUser.FullName());
-            return RedirectToAction("AddImg","ImageUploads");
+            return RedirectToAction("AllImages","ImageUploads");
         }
 
         [HttpPost("/login")]
@@ -101,7 +101,7 @@ namespace Pix.Controllers
 
             HttpContext.Session.SetInt32("UserId", dbUser.UserId);
             HttpContext.Session.SetString("FullName", dbUser.FullName());
-            return RedirectToAction("AddImg", "ImageUploads");
+            return RedirectToAction("AllImages", "ImageUploads");
 
         }
 

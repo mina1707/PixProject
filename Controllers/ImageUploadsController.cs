@@ -37,6 +37,22 @@ namespace Pix.Controllers
         |                   GET REQUESTS                                       |
         +----------------------------------------------------------------------*/
 
+
+        [HttpGet("/dashboard")]
+        public IActionResult AllImages()
+        {
+            if (HttpContext.Session.GetInt32("UserId") != null )
+            {
+                var result = db.Images.ToList();
+                // HttpContext.Session.GetInt32("UserFir") = User.FirstName;
+                return View("Dashboard", result);
+            }
+            
+            return View("Index");
+
+        }
+
+
         [HttpGet("/images/add")]
         public IActionResult AddImg()
         {
@@ -70,7 +86,7 @@ namespace Pix.Controllers
                 return RedirectToAction("AddImg");
             }
 
-            return RedirectToAction("AddImg");
+            return RedirectToAction("AllImages");
         }
 
 

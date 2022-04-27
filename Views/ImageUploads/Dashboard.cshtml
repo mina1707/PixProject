@@ -1,0 +1,14 @@
+@model IEnumerable<Pix.Models.Image>
+
+
+@* <h1>Hello @Session["UserName"]</h1> *@
+
+<table class= "table">
+    @foreach (var img in Model)
+    {
+        
+        <p><img src= "~/Images/@img.ImageName" height="200" width = "240"/> </p>
+        
+    }
+
+</table>

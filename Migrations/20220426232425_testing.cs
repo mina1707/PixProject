@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Pix.Migrations
 {
-    public partial class First : Migration
+    public partial class testing : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
