@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/xiomina/Desktop/Pix/Pix/Pix.csproj": {}
+    "C:\\Users\\jyant\\Desktop\\C#\\ProjectWeek\\Pix\\Pix.csproj": {}
   },
   "projects": {
-    "/Users/xiomina/Desktop/Pix/Pix/Pix.csproj": {
+    "C:\\Users\\jyant\\Desktop\\C#\\ProjectWeek\\Pix\\Pix.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/xiomina/Desktop/Pix/Pix/Pix.csproj",
+        "projectUniqueName": "C:\\Users\\jyant\\Desktop\\C#\\ProjectWeek\\Pix\\Pix.csproj",
         "projectName": "Pix",
-        "projectPath": "/Users/xiomina/Desktop/Pix/Pix/Pix.csproj",
-        "packagesPath": "/Users/xiomina/.nuget/packages/",
-        "outputPath": "/Users/xiomina/Desktop/Pix/Pix/obj/",
+        "projectPath": "C:\\Users\\jyant\\Desktop\\C#\\ProjectWeek\\Pix\\Pix.csproj",
+        "packagesPath": "C:\\Users\\jyant\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jyant\\Desktop\\C#\\ProjectWeek\\Pix\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/xiomina/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\jyant\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -65,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/3.1.418/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

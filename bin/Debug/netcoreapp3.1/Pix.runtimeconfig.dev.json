@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "/Users/xiomina/.dotnet/store/|arch|/|tfm|",
-      "/Users/xiomina/.nuget/packages"
+      "C:\\Users\\jyant\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\jyant\\.nuget\\packages"
     ]
   }
 }
