@@ -74,7 +74,7 @@ namespace Pix.Controllers
                 string fileName = Path.GetFileNameWithoutExtension(image.ImageFile.FileName);
                 string extension = Path.GetExtension(image.ImageFile.FileName);
                 image.ImageName = fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                string path = Path.Combine(wwwRootPath + "/UploadImg/", fileName);
+                string path = Path.Combine(wwwRootPath + "/Images/", fileName);
                 using (var fileStream = new FileStream(path,FileMode.Create))
                 {
                     await image.ImageFile.CopyToAsync(fileStream);

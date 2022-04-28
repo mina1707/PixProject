@@ -17,6 +17,58 @@ namespace Pix.Migrations
                 .HasAnnotation("ProductVersion", "3.1.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("Pix.Models.Album", b =>
+                {
+                    b.Property<int>("AlbumId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("AlbumName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AlbumId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Albums");
+                });
+
+            modelBuilder.Entity("Pix.Models.AlbumImageJoin", b =>
+                {
+                    b.Property<int>("AlbumImageJoinId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("AlbumId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("AlbumImageJoinId");
+
+                    b.HasIndex("AlbumId");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("AlbumImageJoins");
+                });
+
             modelBuilder.Entity("Pix.Models.Image", b =>
                 {
                     b.Property<int>("ImageId")
@@ -79,6 +131,30 @@ namespace Pix.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("Pix.Models.Album", b =>
+                {
+                    b.HasOne("Pix.Models.User", "Uploader")
+                        .WithMany("CreatedAlbums")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Pix.Models.AlbumImageJoin", b =>
+                {
+                    b.HasOne("Pix.Models.Album", "Album")
+                        .WithMany("AlbumImageJoins")
+                        .HasForeignKey("AlbumId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Pix.Models.Image", "Image")
+                        .WithMany("AlbumImageJoins")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Pix.Models.Image", b =>

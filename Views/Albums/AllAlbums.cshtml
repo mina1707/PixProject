@@ -1,0 +1,14 @@
+@model List<Album>
+
+
+@{
+   int? uid = Context.Session.GetInt32("UserId"); 
+}
+
+<h1>Albums</h1>
+
+@foreach (Album album in Model)
+{
+    <img src="/images/png-clipart-computer-icons-project-icon-folder-angle-text.png" height="200" width = "240" />
+    <p>@album.AlbumName</p>
+}

@@ -34,5 +34,9 @@ namespace Pix.Models
         // Navigational PROPs
 
         public User Uploader { get; set; }
+
+        //ManyToMany
+
+        public List<AlbumImageJoin> AlbumImageJoins {get;set;}
     }
 }

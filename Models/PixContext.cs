@@ -12,7 +12,11 @@ namespace Pix.Models
 
         public DbSet<Image> Images { get; set; }
 
-        // public DbSet<Widget> Widgets { get; set; }
-        // public DbSet<Item> Items { get; set; }
+        public DbSet<Album> Albums {get;set;}
+
+        public DbSet<AlbumImageJoin> AlbumImageJoins {get;set;}
+
+
     }
+
 }

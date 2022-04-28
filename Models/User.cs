@@ -47,5 +47,11 @@ namespace Pix.Models
             return FirstName + " " + LastName;
         }
 
+        //Relationships
+
+        //1 user: many albums
+        public List<Album> CreatedAlbums {get;set;}
+
+      
     }
 }

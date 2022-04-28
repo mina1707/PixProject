@@ -1,0 +1,16 @@
+@model Album
+ 
+<div class="container">
+ <h2 class="text-center">Create as many albums as you want!</h2>
+ 
+ <div class="row justify-content-center">
+   <form asp-controller="Albums" asp-action="CreateAlbum" method="POST" class="border rounded w-50 p-3">
+     <div class="form-group">
+       <label asp-for="AlbumName"></label>
+       <span asp-validation-for="AlbumName" class="text-danger font-weight-bold"></span>
+       <input asp-for="AlbumName" class="form-control" />
+     </div>
+     <button class="btn btn-outline-success">Create Album!</button>
+   </form>
+ </div>
+</div>
