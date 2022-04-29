@@ -49,7 +49,7 @@ namespace Pix.Controllers
                 .Include(i => i.ImageUserLikes)
                 .OrderByDescending(t => t.CreatedAt)
                 .ToList();
-                ViewBag.result = result;
+                // ViewBag.result = result;
 
                 var user = db.Users
                 .FirstOrDefault(a => a.UserId == HttpContext.Session.GetInt32("UserId"));
@@ -60,7 +60,7 @@ namespace Pix.Controllers
                 .ToList();
                 ViewBag.AllAlbums = allalbums;
                 
-                return View("Dashboard");
+                return View("Dashboard",result);
             }
             
             return View("Index");

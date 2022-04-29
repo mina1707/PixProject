@@ -9,13 +9,8 @@ using Pix.Models;
 namespace Pix.Migrations
 {
     [DbContext(typeof(PixContext))]
-<<<<<<< HEAD:Migrations/20220428010426_albumUserRelationship.Designer.cs
-    [Migration("20220428010426_albumUserRelationship")]
-    partial class albumUserRelationship
-=======
-    [Migration("20220428224556_Like_Feature")]
-    partial class Like_Feature
->>>>>>> 4c75b74a3e6f26baa3404fd3f86b90e29865fdb2:Migrations/20220428224556_Like_Feature.Designer.cs
+    [Migration("20220429163543_GiveANameToThisMigration")]
+    partial class GiveANameToThisMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

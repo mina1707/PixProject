@@ -1,5 +1,6 @@
 @model IEnumerable<Image>
 
+
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -7,6 +8,8 @@
 @{
     int? uid = Context.Session.GetInt32("UserId");
 }
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +19,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="~/css/colortheme.css">
 </head>
+
 <body class="color-ivory">
 
 
