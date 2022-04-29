@@ -22,10 +22,17 @@ namespace Pix.Controllers
             db = context;
             _logger = logger;
         }
+        private int? uid
+        {
+            get
+            {
+                return HttpContext.Session.GetInt32("UserId");
+            }
+        }
 
         public IActionResult Index()
         {
-            if (HttpContext.Session.GetInt32("UserId") != null )
+            if (uid != null )
             {
                 return RedirectToAction("AllImages", "ImageUploads");
             }
@@ -35,7 +42,7 @@ namespace Pix.Controllers
         [HttpGet("/success")]
         public IActionResult Success()
         {
-            if (HttpContext.Session.GetInt32("UserId") == null )
+            if (uid == null )
             {
                 return RedirectToAction("Index");
             }

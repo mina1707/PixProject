@@ -42,10 +42,12 @@ namespace Pix.Controllers
         [HttpGet("/dashboard")]
         public IActionResult AllImages()
         {
-            if (HttpContext.Session.GetInt32("UserId") != null )
+            if (uid != null )
             {
                 var result = db.Images
                 .Include(u => u.Uploader)
+                .Include(i => i.ImageUserLikes)
+                .OrderByDescending(t => t.CreatedAt)
                 .ToList();
                 
                 return View("Dashboard", result);
@@ -59,6 +61,10 @@ namespace Pix.Controllers
         [HttpGet("/images/add")]
         public IActionResult AddImg()
         {
+            if (uid == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -71,6 +77,15 @@ namespace Pix.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ImageId,Title, Comment ,ImageFile")]Image image)
         {
+            if (uid == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            if (ModelState.IsValid == false)
+            {
+                return View("AddImg");
+            }
+
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _hostEnvironment.WebRootPath;
@@ -86,14 +101,40 @@ namespace Pix.Controllers
                 image.UserId = (int)uid;
                 db.Add(image);
                 await db.SaveChangesAsync();
-                return RedirectToAction("AddImg");
+                return RedirectToAction("AllImages");
             }
 
-            return RedirectToAction("AllImages");
+            return RedirectToAction("AddImg");
         }
 
+        [HttpPost("/images/{imageId}/like")]
+        public IActionResult Like(int imageId)
+        {
+            if (uid == null)
+            {
+                return RedirectToAction("Index","Home");
+            }
 
+            ImageUserLike existingLike = db.ImageUserLikes
+            .FirstOrDefault( l => l.ImageId == imageId && l.UserId == uid);
 
+            if (existingLike == null)
+            {
+                ImageUserLike newLike = new ImageUserLike()
+                {
+                    UserId = (int)uid,
+                    ImageId = imageId
+                };
+                db.ImageUserLikes.Add(newLike);
+            }
+            else
+            {
+                db.Remove(existingLike);
+            }
+            db.SaveChanges();
+            return RedirectToAction("AllImages");
+
+        }
 
 
 

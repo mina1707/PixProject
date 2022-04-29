@@ -48,6 +48,33 @@ namespace Pix.Migrations
                     b.ToTable("Images");
                 });
 
+            modelBuilder.Entity("Pix.Models.ImageUserLike", b =>
+                {
+                    b.Property<int>("ImageUserLikeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ImageUserLikeId");
+
+                    b.HasIndex("ImageId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ImageUserLikes");
+                });
+
             modelBuilder.Entity("Pix.Models.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -84,7 +111,22 @@ namespace Pix.Migrations
             modelBuilder.Entity("Pix.Models.Image", b =>
                 {
                     b.HasOne("Pix.Models.User", "Uploader")
-                        .WithMany()
+                        .WithMany("LikedImages")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Pix.Models.ImageUserLike", b =>
+                {
+                    b.HasOne("Pix.Models.Image", "Image")
+                        .WithMany("ImageUserLikes")
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Pix.Models.User", "User")
+                        .WithMany("ImageUserLikes")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

@@ -12,6 +12,8 @@ namespace Pix.Models
 
         public DbSet<Image> Images { get; set; }
 
+        public DbSet<ImageUserLike> ImageUserLikes { get; set; }
+
         // public DbSet<Widget> Widgets { get; set; }
         // public DbSet<Item> Items { get; set; }
     }
