@@ -1,5 +1,12 @@
 @model IEnumerable<Image>
 
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+@{
+    int? uid = Context.Session.GetInt32("UserId");
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,10 +18,11 @@
 </head>
 <body class="color-ivory">
     
-<table class= "table">
+
     @foreach (var img in Model)
     {
-        
+        bool alreadyLiked = img.ImageUserLikes.Any( l => l.UserId == uid);
+
         <div style="border-radius: 25px;" class="card shadow w-75 mb-3 mx-auto">
             <img style="border-top-left-radius: 25px;border-top-right-radius: 25px;" src= "~/Images/@img.ImageName"/>
             <div style="border-bottom-left-radius: 25px;border-bottom-right-radius: 25px" class="color-lightblue card-body">
@@ -23,11 +31,31 @@
                     <p class="card-text"> Comment: <br>
                     @img.Comment</p>
                 }
-                <small class="text-muted">Submitted by: @img.Uploader.FullName() at @img.CreatedAt</small>
+
+                <div class="card-footer">
+                    <div>
+                        <small class="text-muted">Submitted by: @img.Uploader.FullName() at @img.CreatedAt</small>
+                    </div>
+                    <div>
+                        <form asp-controller="ImageUploads" asp-action="Like" asp-route-imageId="@img.ImageId" method="post">
+                            <button class="btn btn-link">
+                                @if (alreadyLiked)
+                                {
+                                    <span class="text-warning">Un-Like</span>
+                                }
+                                else
+                                {
+                                    <span>Like</span>
+                                }
+                            </button>
+                        </form>
+                        <p>@img.ImageUserLikes.Count Likes</p>
+                    </div>
+                </div>
             </div>
         </div>
     }
-</table>
+
 
 </body>
 </html>

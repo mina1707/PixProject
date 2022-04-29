@@ -47,5 +47,16 @@ namespace Pix.Models
             return FirstName + " " + LastName;
         }
 
+        /* 
+        Relationships and navigation properties. Navigation properties are the
+        properties that have another model as their data type.
+        
+        Navigation properties will be null unless you use .Include
+        */
+
+        public List<Image> LikedImages { get; set; }
+
+        public List<ImageUserLike> ImageUserLikes { get; set; }
+
     }
 }
