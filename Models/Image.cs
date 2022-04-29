@@ -23,7 +23,13 @@ namespace Pix.Models
 
         // public string ImagePath { get; set; }
 
-        public int UserId { get; set; }
+        /* 
+        Relationships and navigation properties. Navigation properties are the
+        properties that have another model as their data type.
+        
+        Navigation properties will be null unless you use .Include
+        */
+
 
         [NotMapped]
         [Display(Name ="Upload File:")]
@@ -33,10 +39,14 @@ namespace Pix.Models
 
         // Navigational PROPs
 
+        // 1 User : to Many Images for creating images
+        public int UserId { get; set; }
         public User Uploader { get; set; }
 
         //ManyToMany
 
         public List<AlbumImageJoin> AlbumImageJoins {get;set;}
+        // Many User to Many Image for LIKING images
+        public List<ImageUserLike> ImageUserLikes { get; set; }
     }
 }

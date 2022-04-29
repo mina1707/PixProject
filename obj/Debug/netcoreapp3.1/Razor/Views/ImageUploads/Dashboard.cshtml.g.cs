@@ -170,7 +170,7 @@ AddHtmlAttributeValue("", 620, img.ImageName, 620, 14, false);
 #line default
 #line hidden
 #nullable disable
-                WriteLiteral("                <small class=\"text-muted\">Submitted by: ");
+                WriteLiteral("\r\n                <div class=\"card-footer\">\r\n                    <div>\r\n                        <small class=\"text-muted\">Submitted by: ");
 #nullable restore
 #line 27 "/Users/xiomina/Desktop/Pix/Pix/Views/ImageUploads/Dashboard.cshtml"
                                                    Write(img.Uploader.FullName());
