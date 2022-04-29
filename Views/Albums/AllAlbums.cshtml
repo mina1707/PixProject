@@ -4,11 +4,13 @@
 @{
    int? uid = Context.Session.GetInt32("UserId"); 
 }
+<a asp-controller="Albums" asp-action="NewAlbum">Create New Album</a>
 
 <h1>Albums</h1>
+
 
 @foreach (Album album in Model)
 {
     <img src="/images/png-clipart-computer-icons-project-icon-folder-angle-text.png" height="200" width = "240" />
-    <p>@album.AlbumName</p>
+    <a asp-controller="Albums" asp-action="InsideAlbum" asp-route-albumId="@album.AlbumId">@album.AlbumName</a> 
 }

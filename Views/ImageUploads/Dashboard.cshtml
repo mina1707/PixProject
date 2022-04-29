@@ -1,5 +1,3 @@
-@model IEnumerable<Image>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +8,14 @@
     <link rel="stylesheet" href="~/css/colortheme.css">
 </head>
 <body class="color-ivory">
+
+
+<h1>Welcome @ViewBag.user.FirstName</h1>
+
     
 <table class= "table">
-    @foreach (var img in Model)
+    @foreach (var img in ViewBag.result)
     {
-        
         <div style="border-radius: 25px;" class="card shadow w-75 mb-3 mx-auto">
             <img style="border-top-left-radius: 25px;border-top-right-radius: 25px;" src= "~/Images/@img.ImageName"/>
             <div style="border-bottom-left-radius: 25px;border-bottom-right-radius: 25px" class="color-lightblue card-body">
@@ -24,6 +25,17 @@
                     @img.Comment</p>
                 }
                 <small class="text-muted">Submitted by: @img.Uploader.FullName() at @img.CreatedAt</small>
+                <span>Add your picture to any album! If you want lol</span>
+                <label>Select Album:</label>
+                <form asp-controller = "ImageUploads" asp-action= "AddImageToAlbum" asp-route-imageId="@img.ImageId" method="POST">
+                    <select name="albumId">
+                        @foreach (var albums in ViewBag.AllAlbums)
+                        {
+                            <option value="@albums.AlbumId">@albums.AlbumName</option>
+                        }
+                    </select>
+                    <button type="submit">Add to Album!</button>
+                </form>
             </div>
         </div>
     }

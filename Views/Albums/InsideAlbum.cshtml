@@ -1,0 +1,10 @@
+
+
+ <h1>@ViewBag.Album.AlbumName</h1>
+
+@foreach (AlbumImageJoin album in ViewBag.List)
+{
+   
+    <img width="140" height= "130" src= "~/Images/@album.Image.ImageName"/>
+}
+

@@ -28,6 +28,10 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="ImageUploads" asp-action="AddImg">Add Image</a>
                         </li>
+                         <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-controller="Albums" asp-action="AllAlbums">Albums</a>
+                        </li>
+                        
                         @if (Context.Session.GetInt32("UserId") != null)
                         {
                             <form asp-controller="Home" asp-action="Logout" method="post">

@@ -63,3 +63,4 @@
 /Users/xiomina/Desktop/Pix/Pix/obj/Debug/netcoreapp3.1/Razor/Views/ImageUploads/Dashboard.cshtml.g.cs
 /Users/xiomina/Desktop/Pix/Pix/obj/Debug/netcoreapp3.1/Razor/Views/Albums/AllAlbums.cshtml.g.cs
 /Users/xiomina/Desktop/Pix/Pix/obj/Debug/netcoreapp3.1/Razor/Views/Albums/NewAlbum.cshtml.g.cs
+/Users/xiomina/Desktop/Pix/Pix/obj/Debug/netcoreapp3.1/Razor/Views/Albums/InsideAlbum.cshtml.g.cs

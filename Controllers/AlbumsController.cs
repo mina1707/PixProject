@@ -10,6 +10,7 @@ using Pix.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace Pix.Controllers
 {
@@ -63,6 +64,7 @@ namespace Pix.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+           
             return View("NewAlbum");
         }
 
@@ -83,40 +85,32 @@ namespace Pix.Controllers
             return RedirectToAction("AllAlbums");
             }
 
-             [HttpPost("/images/{imageId}/join")]
-           public IActionResult Join(int albumId)
-           {
-                if (uid == null)
-               {
-               return RedirectToAction("Index", "Home");
-               }
- 
-               AlbumImageJoin existingJoin = db.AlbumImageJoins
-               .FirstOrDefault(j => j.AlbumId == albumId && j.UserId == uid );
- 
-               if( existingJoin == null)
-               {
-                   AlbumImageJoin newJoin = new AlbumImageJoin()
-                   {
-                       UserId = (int)uid,
-                       AlbumId = albumId
-                   };
- 
-               db.Album.Add(newJoin);
-                  
-               }
-               else{
- 
-                   db.Remove(existingJoin);
-               }
- 
-               db.SaveChanges();
-               //RedirectToAction("Details", new{paramName1= paramValue1, paramName2= paramValue2 })
-               return RedirectToAction("AllAlbums", new {albumId= albumId});
-           }
+
+            [HttpGet("/albums/{albumId}/insideAlbum")]
+
+            public IActionResult InsideAlbum(int albumId)
+            {
+                if (uid == null) 
+                {
+                return RedirectToAction("Index", "Home");
+                }
+
+                Album album = db.Albums
+                .FirstOrDefault(a => a.AlbumId == albumId);
+                
+                List<AlbumImageJoin> imageList = db.AlbumImageJoins
+                .Where( a => a.AlbumId == albumId)
+                .Include(a => a.Image).ToList();
+
+                ViewBag.Album = album;
+                ViewBag.List = imageList;
+
+                return View("InsideAlbum");
+            }
 
     }
-
 }
 
-  
+
+
+
