@@ -108,6 +108,23 @@ namespace Pix.Controllers
                 return View("InsideAlbum");
             }
 
+        [HttpPost("/album/{albumId}/delete")]
+        public IActionResult DeleteAlbum(int albumId)
+        {
+            Album album = db.Albums.FirstOrDefault(a => a.AlbumId == albumId);
+
+            if(album != null)
+            {
+                db.Albums.Remove(album);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("AllAlbums");
+
+
+        }
+
+
     }
 }
 

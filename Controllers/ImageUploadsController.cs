@@ -160,6 +160,23 @@ namespace Pix.Controllers
 
         }
 
+        [HttpPost("/image/{imageId}/delete")]
+        public IActionResult DeleteImage(int imageId)
+        {
+            Image image = db.Images.FirstOrDefault(i => i.ImageId == imageId);
+
+            if(image != null)
+            {
+                db.Images.Remove(image);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("AllImages");
+
+
+        }
+
+
 
 
 

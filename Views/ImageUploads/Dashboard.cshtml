@@ -42,8 +42,7 @@
                     @img.Comment</p>
                 }
                 <small class="text-muted">Submitted by: @img.Uploader.FullName() at @img.CreatedAt</small>
-                <span>Add your picture to any album! If you want lol</span>
-                <label>Select Album:</label>
+                <label>Add to Album:</label>
                 <form asp-controller = "ImageUploads" asp-action= "AddImageToAlbum" asp-route-imageId="@img.ImageId" method="POST">
                     <select name="albumId">
                         @foreach (var albums in ViewBag.AllAlbums)
@@ -71,7 +70,13 @@
                                 }
                             </button>
                         </form>
-                        <p>@img.ImageUserLikes.Count Likes</p>
+                        <p>@img.ImageUserLikes.Count Likes</p>   
+                            @if (img.UserId == uid) 
+                            {
+                                    <form asp-controller = "ImageUploads" asp-action="DeleteImage" asp-route-imageId = "@img.ImageId" method = "POST">
+                                <button class="btn btn-outline-danger-btn-sm">Delete</button>
+                                    </form>
+                            }
                     </div>
                 </div>
             </div>
