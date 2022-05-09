@@ -1,6 +1,5 @@
 @model IEnumerable<Image>
 
-
 @{
     ViewData["Title"] = "Dashboard";
 }
@@ -9,7 +8,6 @@
     int? uid = Context.Session.GetInt32("UserId");
 }
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,72 +15,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="~/css/colortheme.css">
+    <link rel="stylesheet" href="~/css/site.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 
-<body class="color-ivory">
 
 
-<h1>Welcome @ViewBag.user.FirstName</h1>
+
+<body>
+    <h1>Welcome @ViewBag.user.FirstName</h1>
 
     
-<table class= "table">
+        @foreach (var img in Model)
+        { 
+         bool alreadyLiked = img.ImageUserLikes.Any(l => l.UserId == uid);
+         
+        <div class="wrapper card" >
+        <img  class="card-img-top mainImage" width="400" height="400" src= "~/Images/@img.ImageName" />
 
 
-    @foreach (var img in Model)
-    {
-        bool alreadyLiked = img.ImageUserLikes.Any( l => l.UserId == uid);
+        <div class="footer card-body">
+        @if (@img.Comment != null)
+        {
+        <p class="comment">Comments:<br> @img.Comment</p>
+        }
 
-        <div style="border-radius: 25px;" class="card shadow w-75 mb-3 mx-auto">
-            <img style="border-top-left-radius: 25px;border-top-right-radius: 25px;" src= "~/Images/@img.ImageName"/>
-            <div style="border-bottom-left-radius: 25px;border-bottom-right-radius: 25px" class="color-lightblue card-body">
-                @if (@img.Comment != null)
-                {
-                    <p class="card-text"> Comment: <br>
-                    @img.Comment</p>
-                }
-                <small class="text-muted">Submitted by: @img.Uploader.FullName() at @img.CreatedAt</small>
-                <label>Add to Album:</label>
-                <form asp-controller = "ImageUploads" asp-action= "AddImageToAlbum" asp-route-imageId="@img.ImageId" method="POST">
-                    <select name="albumId">
-                        @foreach (var albums in ViewBag.AllAlbums)
-                        {
-                            <option value="@albums.AlbumId">@albums.AlbumName</option>
-                        }
-                    </select>
-                    <button type="submit">Add to Album!</button>
-                </form>
+        <form asp-controller="ImageUploads" asp-action="AddImageToAlbum" asp-route-imageId="@img.ImageId" method="POST">
+            <select name="albumId">
+            @foreach (var albums in ViewBag.AllAlbums)
+            {
+            <option value="@albums.AlbumId">@albums.AlbumName</option>
+            }
+            </select>
+            <button class="btn btn-primary" type="submit">Add to Album!</button>
+        </form>
+        <div class="like">
 
-                <div class="card-footer">
-                    <div>
-                        <small class="text-muted">Submitted by: @img.Uploader.FullName() at @img.CreatedAt</small>
-                    </div>
-                    <div>
-                        <form asp-controller="ImageUploads" asp-action="Like" asp-route-imageId="@img.ImageId" method="post">
-                            <button class="btn btn-link">
-                                @if (alreadyLiked)
-                                {
-                                    <span class="text-warning">Un-Like</span>
-                                }
-                                else
-                                {
-                                    <span>Like</span>
-                                }
-                            </button>
-                        </form>
-                        <p>@img.ImageUserLikes.Count Likes</p>   
-                            @if (img.UserId == uid) 
-                            {
-                                    <form asp-controller = "ImageUploads" asp-action="DeleteImage" asp-route-imageId = "@img.ImageId" method = "POST">
-                                <button class="btn btn-outline-danger-btn-sm">Delete</button>
-                                    </form>
-                            }
-                    </div>
-                </div>
-            </div>
+        <form  id= "heart" asp-controller="ImageUploads" asp-action="Like" asp-route-imageId="@img.ImageId" method="post">
+            <button class="btn btn-link">
+            @if (alreadyLiked)
+            {
+            <i class="bi bi-suit-heart-fill"></i>               }
+            else
+            {
+            <i class="bi bi-suit-heart"></i> 
+            }
+            </button>
+        </form>
+             <p id="heartAlign">@img.ImageUserLikes.Count Likes</p>
         </div>
-    }
 
+
+        <div class="alignDelete">             
+             <small class="text-muted">Submitted by: @img.Uploader.FullName() at @img.CreatedAt</small> 
+
+            @if (img.UserId == uid)
+            {
+            <form asp-controller="ImageUploads" asp-action="DeleteImage" asp-route-imageId="@img.ImageId"method="POST">
+            <button id="trashCan"><i class="bi bi-trash"></i></button>
+            </form>
+            }
+       
+
+        </div> 
+           
+        </div>
+   </div>
+
+    } @* ----> end tag for each table *@
 
 </body>
+
 </html>

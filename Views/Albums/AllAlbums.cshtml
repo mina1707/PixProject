@@ -16,7 +16,7 @@
 
      @if (album.UserId == uid) 
     {
-        <form asp-controller = "Albums" asp-action="DeleteAlbum" asp-route-album`Id = "@album.AlbumId" method = "POST">
+        <form asp-controller = "Albums" asp-action="DeleteAlbum" asp-route-albumId = "@album.AlbumId" method = "POST">
            <button class="btn btn-outline-danger-btn-sm">Delete Album</button>
         </form>
     }
